@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -15,13 +15,43 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FNy-Gi-BOk">
+                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="yse-a1-rb1"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="e31-J9-5Ew"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" placeholder="App name, artist, song, album, e-book" translatesAutoresizingMaskIntoConstraints="NO" id="Vyk-Ak-ok3">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Leo-Zu-T66"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FNy-Gi-BOk" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Du8-ZH-uuh"/>
+                            <constraint firstItem="FNy-Gi-BOk" firstAttribute="top" secondItem="Vyk-Ak-ok3" secondAttribute="bottom" id="Jt9-lW-UD4"/>
+                            <constraint firstItem="Vyk-Ak-ok3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="KWc-ti-IFe"/>
+                            <constraint firstItem="FNy-Gi-BOk" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="OhR-lV-IHT"/>
+                            <constraint firstItem="Vyk-Ak-ok3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="QMI-mF-2Q1"/>
+                            <constraint firstItem="Vyk-Ak-ok3" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ZSd-rz-h84"/>
+                            <constraint firstItem="FNy-Gi-BOk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pXi-k3-1ug"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchBar" destination="Vyk-Ak-ok3" id="Nva-84-k40"/>
+                        <outlet property="tableView" destination="FNy-Gi-BOk" id="xl5-2g-Ylg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="124"/>
+            <point key="canvasLocation" x="137.68115942028987" y="123.88392857142857"/>
         </scene>
     </scenes>
     <resources>
