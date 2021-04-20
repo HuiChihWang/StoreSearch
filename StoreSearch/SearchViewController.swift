@@ -12,7 +12,6 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    
     let search = SearchModel()
     
     private let searchCellId = "SearchResultCell"
@@ -26,6 +25,8 @@ class SearchViewController: UIViewController {
         let nothingFoundCell = UINib(nibName: "NothingFoundCell", bundle: nil)
         tableView.register(resultCell, forCellReuseIdentifier: searchCellId)
         tableView.register(nothingFoundCell, forCellReuseIdentifier: nothingFoundCellId)
+        
+        searchBar.becomeFirstResponder()
     }
 }
 
@@ -41,9 +42,7 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "testCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "testCell")
-        
+                
         var cell: UITableViewCell!
         
         if (search.status == .hasSearchResult) {
