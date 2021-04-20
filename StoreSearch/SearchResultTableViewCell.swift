@@ -33,11 +33,13 @@ class SearchResultTableViewCell: UITableViewCell {
     }
     
     func configureCell(with result: SearchResult) {
-        nameLabel.text = result.trackName
-        artistLabel.text = result.artistName
+        nameLabel.text = result.name
+        artistLabel.text = String(format: "%@ (%@)", result.artist, result.type)
         
-        if let url = URL(string: result.imageSmall), let data = try? Data(contentsOf: url) {
-            searchImage.image = UIImage(data: data)
+        if let imageURL = result.imageSmall, let requestURL = URL(string: imageURL) {
+            if let data = try? Data(contentsOf: requestURL) {
+                searchImage.image = UIImage(data: data)
+            }
         }
     }
 

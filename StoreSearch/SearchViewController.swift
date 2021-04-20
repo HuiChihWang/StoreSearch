@@ -63,6 +63,11 @@ extension SearchViewController: UITableViewDataSource {
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let result = search.getResult(by: indexPath.row) {
+            print(result)
+        }
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
