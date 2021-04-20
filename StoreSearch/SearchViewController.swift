@@ -15,9 +15,17 @@ class SearchViewController: UIViewController {
     
     let search = SearchModel()
     
+    private let searchCellId = "SearchResultCell"
+    private let nothingFoundCellId = "NothingFoundCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let resultCell = UINib(nibName: "SearchResultCell", bundle: nil)
+        let nothingFoundCell = UINib(nibName: "NothingFoundCell", bundle: nil)
+        tableView.register(resultCell, forCellReuseIdentifier: searchCellId)
+        tableView.register(nothingFoundCell, forCellReuseIdentifier: nothingFoundCellId)
     }
 }
 
@@ -34,15 +42,21 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "testCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "testCell")
-                
-        let result = search.getResult(by: indexPath.row) ?? SearchResult()
-        cell.textLabel?.text = result.name
-        cell.detailTextLabel?.text = result.artistName
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "testCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "testCell")
         
-        if (search.status == .noResult) {
-            cell.textLabel?.text = "(Nothing Found)"
-            cell.detailTextLabel?.text = ""
+        var cell: UITableViewCell!
+        
+        if (search.status == .hasSearchResult) {
+            if let extraCell = tableView.dequeueReusableCell(withIdentifier: searchCellId, for: indexPath) as? SearchResultTableViewCell {
+                let result = search.getResult(by: indexPath.row) ?? SearchResult()
+                extraCell.nameLabel.text = result.name
+                extraCell.artistLabel.text = result.artistName
+                
+                cell = extraCell
+            }
+        }
+        else {
+            cell = tableView.dequeueReusableCell(withIdentifier: nothingFoundCellId, for: indexPath)
         }
         
         return cell
