@@ -7,16 +7,54 @@
 
 import Foundation
 
-struct SearchResult {
-    var name = "name"
-    var artistName = "artist"
+
+struct SearchResult: Codable {
+    
+    enum CodingKeys: String, CodingKey {
+        case imageSmall = "artworkUrl60"
+        case imageLarge = "artworkUrl100"
+        case storeURL = "trackViewUrl"
+        case genre = "primaryGenreName"
+        case kind, artistName, trackName
+        case trackPrice, currency
+    }
+    
+    var artistName: String? = ""
+    var trackName: String? = ""
+    var storeURL: String? = ""
+    var kind: String? = ""
+    var trackPrice: Double? = 0.0
+    
+    var currency = ""
+    var imageSmall = ""
+    var imageLarge = ""
+    var genre = ""
+}
+
+class SearchResults: Codable {
+    var resultCount = 0
+    var results = [SearchResult]()
+    
+    
+    var isEmpty: Bool {
+        results.isEmpty
+    }
+    
+    func getResult(by index: Int) -> SearchResult? {
+        guard (0..<resultCount).contains(index) else {
+            return nil
+        }
+        return results[index]
+    }
+    
+    
 }
 
 class SearchModel {
-    private var results = [SearchResult]()
+    private var results = SearchResults()
     
     var resultsNum: Int {
-        results.count
+        results.resultCount
     }
     
     private(set) var status = SearchStatus.notSearchedYet
@@ -26,28 +64,57 @@ class SearchModel {
     }
     
     public func search(with text: String) {
-        results = [SearchResult]()
-        status = .searching
+        let encodedText = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
-        // fake search API
-        if (text != "0000") {
-            (0..<5).forEach { index in
-                var searchResult = SearchResult()
-                searchResult.name = "fake data \(index)"
-                searchResult.artistName = text
-                results.append(searchResult)
+        if let searchText = encodedText, let requestURL = getiTuneURL(with: searchText) {
+            print("searching with text: \(requestURL)")
+            
+            // TODO: need to dig again
+            status = .searching
+
+            if let data = persormSearchRequest(with: requestURL) {
+                results = parse(data: data)
+                status = results.isEmpty ? .noResult : .hasSearchResult
             }
         }
-        
-        status = results.isEmpty ? .noResult : .hasSearchResult
+        else {
+            print("search fail with text: \(encodedText!)")
+        }
     }
     
     public func getResult(by index: Int) -> SearchResult? {
-        guard (0..<resultsNum).contains(index) else {
-            return nil
+        results.getResult(by: index)
+    }
+    
+    private func getiTuneURL(with searchText: String) -> URL? {
+        let urlString = String(format: "https://itunes.apple.com/search?term=%@", searchText)
+        return URL(string: urlString)
+    }
+    
+    private func persormSearchRequest(with url: URL) -> Data? {
+        do {
+            return try Data(contentsOf: url)
+        } catch {
+            print("Download Error: \(error.localizedDescription)")
+            status = .networkError
         }
         
-        return results[index]
+        return nil
+    }
+    
+    private func parse(data: Data) -> SearchResults {
+        
+        // parsing error
+        var result = SearchResults()
+        
+        do {
+            let decoder = JSONDecoder()
+            result = try decoder.decode(SearchResults.self, from: data)
+        } catch {
+            print("JSON parsing error: \(error.localizedDescription)")
+        }
+        
+        return result
     }
 }
 
@@ -56,4 +123,5 @@ enum SearchStatus {
     case hasSearchResult
     case noResult
     case searching
+    case networkError
 }

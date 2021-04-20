@@ -48,8 +48,7 @@ extension SearchViewController: UITableViewDataSource {
         if (search.status == .hasSearchResult) {
             if let extraCell = tableView.dequeueReusableCell(withIdentifier: searchCellId, for: indexPath) as? SearchResultTableViewCell {
                 let result = search.getResult(by: indexPath.row) ?? SearchResult()
-                extraCell.nameLabel.text = result.name
-                extraCell.artistLabel.text = result.artistName
+                extraCell.configureCell(with: result)
                 
                 cell = extraCell
             }
@@ -78,8 +77,14 @@ extension SearchViewController: UISearchBarDelegate {
         
         search.search(with: searchBar.text!)
         tableView.reloadData()
-        
         searchBar.resignFirstResponder()
+        
+        if (search.status == .networkError) {
+            let alertController = UIAlertController(title: "Woops...", message: "There was an error accessing the iTunes Store. Please Try Again", preferredStyle: .alert)
+            
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        }
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {

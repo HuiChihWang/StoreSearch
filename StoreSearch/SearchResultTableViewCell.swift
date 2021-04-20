@@ -10,6 +10,11 @@ import UIKit
 class SearchResultTableViewCell: UITableViewCell {
 
     @IBOutlet weak var searchImage: UIImageView!
+    {
+        didSet {
+            searchImage.layer.cornerRadius = 10
+        }
+    }
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
     
@@ -25,6 +30,15 @@ class SearchResultTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func configureCell(with result: SearchResult) {
+        nameLabel.text = result.trackName
+        artistLabel.text = result.artistName
+        
+        if let url = URL(string: result.imageSmall), let data = try? Data(contentsOf: url) {
+            searchImage.image = UIImage(data: data)
+        }
     }
 
 }
