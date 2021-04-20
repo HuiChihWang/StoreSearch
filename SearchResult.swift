@@ -19,6 +19,10 @@ class SearchModel {
         results.count
     }
     
+    var isEmpty: Bool {
+        results.isEmpty
+    }
+    
     public func search(with text: String) {
         results = [SearchResult]()
         

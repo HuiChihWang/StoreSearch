@@ -21,23 +21,31 @@ class SearchViewController: UIViewController {
         
 
     }
-
-
 }
 
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if (search.isEmpty) {
+            return 1
+        }
+        
         return search.resultsNum
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "testCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "testCell")
-        
+                
         let result = search.getResult(by: indexPath.row) ?? SearchResult()
         cell.textLabel?.text = result.name
         cell.detailTextLabel?.text = result.artistName
+        
+        if (search.isEmpty) {
+            cell.textLabel?.text = "(Nothing Found)"
+            cell.detailTextLabel?.text = ""
+        }
         
         return cell
     }
