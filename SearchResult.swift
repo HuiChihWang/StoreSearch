@@ -19,13 +19,17 @@ class SearchModel {
         results.count
     }
     
+    private(set) var status = SearchStatus.notSearchedYet
+    
     var isEmpty: Bool {
-        results.isEmpty
+        status == .noResult
     }
     
     public func search(with text: String) {
         results = [SearchResult]()
+        status = .searching
         
+        // fake search API
         if (text != "0000") {
             (0..<5).forEach { index in
                 var searchResult = SearchResult()
@@ -34,6 +38,8 @@ class SearchModel {
                 results.append(searchResult)
             }
         }
+        
+        status = results.isEmpty ? .noResult : .hasSearchResult
     }
     
     public func getResult(by index: Int) -> SearchResult? {
@@ -43,5 +49,11 @@ class SearchModel {
         
         return results[index]
     }
-    
+}
+
+enum SearchStatus {
+    case notSearchedYet
+    case hasSearchResult
+    case noResult
+    case searching
 }

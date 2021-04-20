@@ -18,8 +18,6 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-
     }
 }
 
@@ -27,7 +25,7 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if (search.isEmpty) {
+        if (search.status == .noResult) {
             return 1
         }
         
@@ -42,12 +40,22 @@ extension SearchViewController: UITableViewDataSource {
         cell.textLabel?.text = result.name
         cell.detailTextLabel?.text = result.artistName
         
-        if (search.isEmpty) {
+        if (search.status == .noResult) {
             cell.textLabel?.text = "(Nothing Found)"
             cell.detailTextLabel?.text = ""
         }
         
         return cell
+    }
+}
+
+extension SearchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return search.status == .hasSearchResult ? indexPath : nil
     }
 }
 
