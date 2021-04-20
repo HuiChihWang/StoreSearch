@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C79EA5A262F3D7300639099 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C79EA59262F3D7300639099 /* SearchModel.swift */; };
 		0C7CF7FE262E7C3000D72CD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7CF7FD262E7C3000D72CD9 /* AppDelegate.swift */; };
 		0C7CF800262E7C3000D72CD9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7CF7FF262E7C3000D72CD9 /* SceneDelegate.swift */; };
 		0C7CF802262E7C3000D72CD9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7CF801262E7C3000D72CD9 /* SearchViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C79EA59262F3D7300639099 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		0C7CF7FA262E7C3000D72CD9 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7CF7FD262E7C3000D72CD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C7CF7FF262E7C3000D72CD9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				0C7CF813262E8B1500D72CD9 /* SearchResult.swift */,
+				0C79EA59262F3D7300639099 /* SearchModel.swift */,
 				0C7CF7FD262E7C3000D72CD9 /* AppDelegate.swift */,
 				0C7CF7FF262E7C3000D72CD9 /* SceneDelegate.swift */,
 				0C7CF801262E7C3000D72CD9 /* SearchViewController.swift */,
@@ -154,6 +157,7 @@
 				0C7CF802262E7C3000D72CD9 /* SearchViewController.swift in Sources */,
 				0C7CF81E262EB61300D72CD9 /* SearchResultTableViewCell.swift in Sources */,
 				0C7CF7FE262E7C3000D72CD9 /* AppDelegate.swift in Sources */,
+				0C79EA5A262F3D7300639099 /* SearchModel.swift in Sources */,
 				0C7CF814262E8B1500D72CD9 /* SearchResult.swift in Sources */,
 				0C7CF800262E7C3000D72CD9 /* SceneDelegate.swift in Sources */,
 			);
