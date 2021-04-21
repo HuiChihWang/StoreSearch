@@ -37,8 +37,12 @@ class SearchResultTableViewCell: UITableViewCell {
         artistLabel.text = String(format: "%@ (%@)", result.artist, result.type)
         
         if let imageURL = result.imageSmall, let requestURL = URL(string: imageURL) {
-            if let data = try? Data(contentsOf: requestURL) {
-                searchImage.image = UIImage(data: data)
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: requestURL) {
+                    DispatchQueue.main.async {
+                        self.searchImage.image = UIImage(data: data)
+                    }
+                }
             }
         }
     }
