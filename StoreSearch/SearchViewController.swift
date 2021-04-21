@@ -10,6 +10,7 @@ import UIKit
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var categoryControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
     let search = SearchModel()
@@ -91,8 +92,29 @@ extension SearchViewController: UITableViewDelegate {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        performSearch()
+    }
+    
+    
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        .topAttached
+    }
+    
+    @IBAction func categoryChanged(_ sender: Any) {
+        performSearch()
+    }
+    
+    private func setUpRequest() {
+        let selectedTitle = categoryControl.titleForSegment(at: categoryControl.selectedSegmentIndex)
         
-        search.setUpSearchText(with: searchBar.text!)
+        let category = Category(rawValue: selectedTitle ?? "All") ?? .all
+        
+        search.setUpSearchText(with: searchBar.text!, by: category)
+    }
+    
+    private func performSearch() {
+        setUpRequest()
+        
         tableView.reloadData()
         searchBar.resignFirstResponder()
         
@@ -104,15 +126,12 @@ extension SearchViewController: UISearchBarDelegate {
                 if (self.search.status == .networkError) {
                     self.showNetworkError()
                 }
-
                 self.tableView.reloadData()
             }
         }
+
     }
-    
-    func position(for bar: UIBarPositioning) -> UIBarPosition {
-        .topAttached
-    }
+
     
     private func showNetworkError() {
         let alertController = UIAlertController(title: "Woops...", message: "There was an error accessing the iTunes Store. Please Try Again", preferredStyle: .alert)

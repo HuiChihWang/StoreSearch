@@ -31,10 +31,10 @@ class SearchModel {
     }
     
     // TODO: need to use asynchronous programming
-    public func setUpSearchText(with text: String, number: Int = 50) {
+    public func setUpSearchText(with text: String, by category: Category = .all, number: Int = 50) {
         if let searchText = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             
-            let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=%d", searchText, number)
+            let urlString = String(format: "https://itunes.apple.com/search?term=%@&type=%@&limit=%d", searchText, category.searchKey, number)
             
             searchURL = URL(string: urlString)
             print("searching with url: \(searchURL!)")
@@ -87,4 +87,24 @@ enum SearchStatus {
     case noResult
     case searching
     case networkError
+}
+
+enum Category: String {
+    case all = "All"
+    case music = "Music"
+    case software = "Software"
+    case ebook = "E-books"
+    
+    var searchKey: String {
+        switch self {
+        case .music:
+            return "musicTrack"
+        case .software:
+            return "software"
+        case .ebook:
+            return "ebook"
+        default:
+            return ""
+        }
+    }
 }
