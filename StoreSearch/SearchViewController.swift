@@ -58,6 +58,7 @@ extension SearchViewController: UITableViewDataSource {
         }
         else if (search.status == .searching) {
             if let loadingCell = tableView.dequeueReusableCell(withIdentifier: loadingCellId, for: indexPath) as? LoadingTableViewCell {
+                loadingCell.activityIndicator.startAnimating()
                 cell = loadingCell
             }
         }
@@ -90,20 +91,33 @@ extension SearchViewController: UITableViewDelegate {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        search.search(with: searchBar.text!)
+        
+        search.setUpSearchText(with: searchBar.text!)
         tableView.reloadData()
         searchBar.resignFirstResponder()
         
-        if (search.status == .networkError) {
-            let alertController = UIAlertController(title: "Woops...", message: "There was an error accessing the iTunes Store. Please Try Again", preferredStyle: .alert)
+        DispatchQueue.global().async {
+            self.search.startSearch()
             
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alertController, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                
+                if (self.search.status == .networkError) {
+                    self.showNetworkError()
+                }
+
+                self.tableView.reloadData()
+            }
         }
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         .topAttached
+    }
+    
+    private func showNetworkError() {
+        let alertController = UIAlertController(title: "Woops...", message: "There was an error accessing the iTunes Store. Please Try Again", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
 }
 
