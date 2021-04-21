@@ -18,6 +18,9 @@ class SearchResultTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
     
+    
+    private var downloadTask: URLSessionDownloadTask?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -37,14 +40,46 @@ class SearchResultTableViewCell: UITableViewCell {
         artistLabel.text = String(format: "%@ (%@)", result.artist, result.type)
         
         if let imageURL = result.imageSmall, let requestURL = URL(string: imageURL) {
-            DispatchQueue.global().async {
-                if let data = try? Data(contentsOf: requestURL) {
-                    DispatchQueue.main.async {
-                        self.searchImage.image = UIImage(data: data)
+//            prepareImageView(with: requestURL)
+            downloadTask = searchImage.downloadImage(with: requestURL)
+            
+        }
+    }
+    
+    
+    
+    private func prepareImageView(with imageURL: URL) {
+        DispatchQueue.global().async {
+            if let data = try? Data(contentsOf: imageURL) {
+                
+                // weak self: check whether current object is still alive
+                DispatchQueue.main.async { [weak self] in
+                    if let weakSelf = self {
+                        weakSelf.searchImage.image = UIImage(data: data)
                     }
                 }
             }
         }
     }
 
+}
+
+extension UIImageView {
+    func downloadImage(with url: URL) -> URLSessionDownloadTask {
+        let session = URLSession.shared
+        
+        let task = session.downloadTask(with: url) { [weak self] url, res, error in
+            
+            if error == nil, let url = url, let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    if let weakSelf = self {
+                        weakSelf.image = image
+                    }
+                }
+            }
+        }
+        
+        task.resume()
+        return task
+    }
 }

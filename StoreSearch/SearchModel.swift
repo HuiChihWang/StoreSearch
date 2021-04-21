@@ -30,7 +30,7 @@ class SearchModel {
         }
     }
     
-    // TODO: need to use asynchronous programming
+    // TODO: need to use asynchronous programming (URL Session)
     public func setUpSearchText(with text: String, by category: Category = .all, number: Int = 50) {
         if let searchText = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             
