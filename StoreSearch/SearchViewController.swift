@@ -16,6 +16,7 @@ class SearchViewController: UIViewController {
     
     private let searchCellId = "SearchResultCell"
     private let nothingFoundCellId = "NothingFoundCell"
+    private let loadingCellId = "LoadingCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +24,10 @@ class SearchViewController: UIViewController {
         
         let resultCell = UINib(nibName: "SearchResultCell", bundle: nil)
         let nothingFoundCell = UINib(nibName: "NothingFoundCell", bundle: nil)
+        let loadingCell = UINib(nibName: "LoadingCell", bundle: nil)
         tableView.register(resultCell, forCellReuseIdentifier: searchCellId)
         tableView.register(nothingFoundCell, forCellReuseIdentifier: nothingFoundCellId)
+        tableView.register(loadingCell, forCellReuseIdentifier: loadingCellId)
         
         searchBar.becomeFirstResponder()
     }
@@ -34,7 +37,7 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if (search.status == .noResult) {
+        if (search.status == .noResult || search.status == .searching) {
             return 1
         }
         
@@ -46,11 +49,16 @@ extension SearchViewController: UITableViewDataSource {
         var cell: UITableViewCell!
         
         if (search.status == .hasSearchResult) {
-            if let extraCell = tableView.dequeueReusableCell(withIdentifier: searchCellId, for: indexPath) as? SearchResultTableViewCell {
+            if let detailCell = tableView.dequeueReusableCell(withIdentifier: searchCellId, for: indexPath) as? SearchResultTableViewCell {
                 let result = search.getResult(by: indexPath.row) ?? SearchResult()
-                extraCell.configureCell(with: result)
+                detailCell.configureCell(with: result)
                 
-                cell = extraCell
+                cell = detailCell
+            }
+        }
+        else if (search.status == .searching) {
+            if let loadingCell = tableView.dequeueReusableCell(withIdentifier: loadingCellId, for: indexPath) as? LoadingTableViewCell {
+                cell = loadingCell
             }
         }
         else {
@@ -72,14 +80,16 @@ extension SearchViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return search.status == .hasSearchResult ? indexPath : nil
+        
+        if (search.status == .hasSearchResult) {
+            return indexPath
+        }
+        return nil
     }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("The search text is: '\(searchBar.text!)'")
-        
         search.search(with: searchBar.text!)
         tableView.reloadData()
         searchBar.resignFirstResponder()

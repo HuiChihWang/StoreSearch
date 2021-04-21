@@ -10,7 +10,7 @@ import Foundation
 class SearchModel {
     private var results = SearchResults() {
         didSet {
-            results.results.sort(by: {$0 < $1})
+            results.results.sort(by: <)
         }
     }
     
@@ -24,13 +24,14 @@ class SearchModel {
         status == .noResult
     }
     
+    // TODO: need to use asynchronous programming
     public func search(with text: String) {
         let encodedText = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         if let searchText = encodedText, let requestURL = getiTuneURL(with: searchText) {
             print("searching with text: \(requestURL)")
             status = .searching
-
+            
             if let data = persormSearchRequest(with: requestURL) {
                 results = parse(data: data)
                 status = results.isEmpty ? .noResult : .hasSearchResult
@@ -39,14 +40,17 @@ class SearchModel {
         else {
             print("search fail with text: \(encodedText!)")
         }
+        
+        // TODO: this line is only for test loading cell usage, need to remove it
+        status = .searching
     }
     
     public func getResult(by index: Int) -> SearchResult? {
         results.getResult(by: index)
     }
     
-    private func getiTuneURL(with searchText: String) -> URL? {
-        let urlString = String(format: "https://itunes.apple.com/search?term=%@", searchText)
+    private func getiTuneURL(with searchText: String, number: Int = 50) -> URL? {
+        let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=%d", searchText, number)
         return URL(string: urlString)
     }
     
