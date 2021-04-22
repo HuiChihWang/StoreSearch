@@ -79,8 +79,148 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="123.88392857142857"/>
         </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="veg-7V-dH0">
+            <objects>
+                <viewController id="vV0-Fb-d72" customClass="DetailViewController" customModule="StoreSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KMX-3f-qbg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fHt-oL-5bt" userLabel="Pop-up View">
+                                <rect key="frame" x="67" y="313" width="280" height="280"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kxM-Pq-iaq">
+                                        <rect key="frame" x="16" y="135" width="248" height="103"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nod-YO-tcw">
+                                                <rect key="frame" x="0.0" y="0.0" width="47.5" height="25"/>
+                                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="19"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSc-7Z-kOG">
+                                                <rect key="frame" x="0.0" y="33" width="81.5" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Kh3-uV-Z3n" userLabel="Type">
+                                                <rect key="frame" x="0.0" y="59" width="132.5" height="18"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAZ-Ow-ODD">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="YJg-40-egy"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <color key="textColor" name="ArtistName"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="type name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsf-Vd-nFl">
+                                                        <rect key="frame" x="60" y="0.0" width="72.5" height="18"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cad-6w-62o" userLabel="Genre">
+                                                <rect key="frame" x="0.0" y="85" width="141.5" height="18"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ms8-Fv-Ein">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="2cB-09-V7x"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <color key="textColor" name="ArtistName"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="genre name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v7G-TP-8QF">
+                                                        <rect key="frame" x="60" y="0.0" width="81.5" height="18"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="iVH-yW-p5h">
+                                        <rect key="frame" x="90" y="21.5" width="100" height="97"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="DtP-GB-HWC"/>
+                                            <constraint firstAttribute="width" constant="100" id="Yfb-wr-YuO"/>
+                                        </constraints>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="thin"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwD-rJ-6Kp" userLabel="Close Button">
+                                        <rect key="frame" x="247" y="8" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="EIQ-xc-kL3"/>
+                                            <constraint firstAttribute="height" constant="25" id="pS9-nG-wdL"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="close:" destination="vV0-Fb-d72" eventType="touchUpInside" id="saa-9t-1yu"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 9.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ao0-Td-2hc">
+                                        <rect key="frame" x="203" y="240" width="61" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="DetailBG"/>
+                                <constraints>
+                                    <constraint firstItem="gwD-rJ-6Kp" firstAttribute="top" secondItem="fHt-oL-5bt" secondAttribute="top" constant="8" id="ESq-fo-RN3"/>
+                                    <constraint firstAttribute="trailing" secondItem="ao0-Td-2hc" secondAttribute="trailing" constant="16" id="Iej-bL-IcL"/>
+                                    <constraint firstItem="kxM-Pq-iaq" firstAttribute="leading" secondItem="fHt-oL-5bt" secondAttribute="leading" constant="16" id="NUD-WF-3iY"/>
+                                    <constraint firstItem="kxM-Pq-iaq" firstAttribute="top" secondItem="iVH-yW-p5h" secondAttribute="bottom" constant="15" id="Onn-3T-DLL"/>
+                                    <constraint firstAttribute="trailing" secondItem="gwD-rJ-6Kp" secondAttribute="trailing" constant="8" id="Zb6-nq-b0h"/>
+                                    <constraint firstAttribute="bottom" secondItem="ao0-Td-2hc" secondAttribute="bottom" constant="16" id="loT-YA-ZAq"/>
+                                    <constraint firstItem="iVH-yW-p5h" firstAttribute="top" secondItem="fHt-oL-5bt" secondAttribute="top" constant="20" id="oeR-Eo-zqd"/>
+                                    <constraint firstAttribute="width" secondItem="fHt-oL-5bt" secondAttribute="height" multiplier="1:1" id="r9H-u6-3tf"/>
+                                    <constraint firstItem="iVH-yW-p5h" firstAttribute="centerX" secondItem="fHt-oL-5bt" secondAttribute="centerX" id="wWg-sw-avR"/>
+                                    <constraint firstAttribute="trailing" secondItem="kxM-Pq-iaq" secondAttribute="trailing" constant="16" id="xne-QK-jpr"/>
+                                    <constraint firstAttribute="width" constant="280" id="xuP-mh-H5D"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="izH-hL-Xsb"/>
+                        <color key="backgroundColor" name="ArtistName"/>
+                        <constraints>
+                            <constraint firstItem="fHt-oL-5bt" firstAttribute="centerY" secondItem="izH-hL-Xsb" secondAttribute="centerY" id="9WJ-CG-pvF"/>
+                            <constraint firstItem="fHt-oL-5bt" firstAttribute="centerX" secondItem="izH-hL-Xsb" secondAttribute="centerX" id="CqO-fe-zXj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="artistLabel" destination="dSc-7Z-kOG" id="9hF-B1-Tyf"/>
+                        <outlet property="detailImage" destination="iVH-yW-p5h" id="GqF-s0-xbK"/>
+                        <outlet property="genreLabel" destination="v7G-TP-8QF" id="e6C-2k-zhW"/>
+                        <outlet property="nameLabel" destination="nod-YO-tcw" id="Vd0-lY-cOL"/>
+                        <outlet property="priceLabel" destination="ao0-Td-2hc" id="a19-jn-jM6"/>
+                        <outlet property="typeLabel" destination="fsf-Vd-nFl" id="e36-UH-O9M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ENm-eL-4av" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="950.72463768115949" y="123.88392857142857"/>
+        </scene>
     </scenes>
+    <color key="tintColor" name="AccentColor"/>
     <resources>
+        <image name="square" catalog="system" width="128" height="114"/>
+        <namedColor name="AccentColor">
+            <color red="0.039000000804662704" green="0.31400001049041748" blue="0.31400001049041748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ArtistName">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="DetailBG">
+            <color red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="SearchBar">
             <color red="0.70599997043609619" green="0.94099998474121094" blue="0.82400000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
