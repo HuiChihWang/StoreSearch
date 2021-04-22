@@ -35,6 +35,12 @@ class SearchResultTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        downloadTask?.cancel()
+        downloadTask = nil
+    }
+    
     func configureCell(with result: SearchResult) {
         nameLabel.text = result.name
         artistLabel.text = String(format: "%@ (%@)", result.artist, result.type)
