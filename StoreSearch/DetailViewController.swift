@@ -16,12 +16,13 @@ class DetailViewController: UIViewController {
             popUpView.layer.cornerRadius = 10
         }
     }
+    
     @IBOutlet weak var detailImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var priceButton: UIButton!
     @IBOutlet weak var priceBorder: UIView! {
         didSet {
             priceBorder.layer.cornerRadius = 5
@@ -30,6 +31,10 @@ class DetailViewController: UIViewController {
         }
     }
     
+    deinit {
+        print("destroy view")
+        imageTask?.cancel()
+    }
     
     private var imageTask: URLSessionDownloadTask?
     
@@ -50,6 +55,11 @@ class DetailViewController: UIViewController {
     @IBAction func close(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    @IBAction func openInStore(_ sender: Any) {
+        if let strUrl = result?.storeURL, let storeUrl = URL(string: strUrl) {
+            UIApplication.shared.open(storeUrl, options: [:], completionHandler: nil)
+        }
+    }
     
     private func configurePopUp() {
         nameLabel.text = result?.name
@@ -58,7 +68,7 @@ class DetailViewController: UIViewController {
         genreLabel.text = result?.genre
         
         if let price = result?.price {
-            priceLabel.text = getPriceString(with: price)
+            priceButton.setTitle(getPriceString(with: price), for: .normal)
         }
         
         

@@ -167,21 +167,26 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oOX-xb-ZIk" userLabel="Price Frame">
-                                        <rect key="frame" x="191" y="242" width="81" height="30"/>
+                                        <rect key="frame" x="195" y="241" width="77" height="31"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 9.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ao0-Td-2hc">
-                                                <rect key="frame" x="10" y="3" width="61" height="24"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LiR-6M-3Ds" userLabel="Price Button">
+                                                <rect key="frame" x="10" y="3" width="57" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="7V8-c8-nxS"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                <color key="textColor" name="AccentColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <state key="normal" title="$9.99"/>
+                                                <connections>
+                                                    <action selector="openInStore:" destination="vV0-Fb-d72" eventType="touchUpInside" id="sK2-yv-NoV"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="ao0-Td-2hc" secondAttribute="trailing" constant="10" id="LFK-A6-t3b"/>
-                                            <constraint firstAttribute="bottom" secondItem="ao0-Td-2hc" secondAttribute="bottom" constant="3" id="lJE-8g-rMS"/>
-                                            <constraint firstItem="ao0-Td-2hc" firstAttribute="top" secondItem="oOX-xb-ZIk" secondAttribute="top" constant="3" id="rdI-Q6-NtM"/>
-                                            <constraint firstItem="ao0-Td-2hc" firstAttribute="leading" secondItem="oOX-xb-ZIk" secondAttribute="leading" constant="10" id="z5C-qI-S99"/>
+                                            <constraint firstItem="LiR-6M-3Ds" firstAttribute="leading" secondItem="oOX-xb-ZIk" secondAttribute="leading" constant="10" id="0RB-rr-Oh5"/>
+                                            <constraint firstAttribute="trailing" secondItem="LiR-6M-3Ds" secondAttribute="trailing" constant="10" id="8Mu-rB-WJk"/>
+                                            <constraint firstItem="LiR-6M-3Ds" firstAttribute="top" secondItem="oOX-xb-ZIk" secondAttribute="top" constant="3" id="MhP-MK-4O7"/>
+                                            <constraint firstAttribute="bottom" secondItem="LiR-6M-3Ds" secondAttribute="bottom" constant="3" id="ouy-7o-jSk"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -216,7 +221,7 @@
                         <outlet property="nameLabel" destination="nod-YO-tcw" id="Vd0-lY-cOL"/>
                         <outlet property="popUpView" destination="fHt-oL-5bt" id="OZj-Iz-ORb"/>
                         <outlet property="priceBorder" destination="oOX-xb-ZIk" id="WLk-Q1-ZTa"/>
-                        <outlet property="priceLabel" destination="ao0-Td-2hc" id="a19-jn-jM6"/>
+                        <outlet property="priceButton" destination="LiR-6M-3Ds" id="92T-jo-Xdq"/>
                         <outlet property="typeLabel" destination="fsf-Vd-nFl" id="e36-UH-O9M"/>
                     </connections>
                 </viewController>
