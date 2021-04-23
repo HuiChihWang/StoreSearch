@@ -18,6 +18,7 @@ class SearchViewController: UIViewController {
     private let searchCellId = "SearchResultCell"
     private let nothingFoundCellId = "NothingFoundCell"
     private let loadingCellId = "LoadingCell"
+    private let goToDetailViewSequeID = "ShowDetail"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,14 @@ class SearchViewController: UIViewController {
         tableView.register(loadingCell, forCellReuseIdentifier: loadingCellId)
         
         searchBar.becomeFirstResponder()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == goToDetailViewSequeID) {
+            if let controller = segue.destination as? DetailViewController {
+                controller.result = sender as? SearchResult
+            }
+        }
     }
 }
 
@@ -75,8 +84,11 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let result = search.getResult(by: indexPath.row) {
+            performSegue(withIdentifier: goToDetailViewSequeID, sender: result)
             print(result)
         }
+        
+        
         
         tableView.deselectRow(at: indexPath, animated: true)
     }

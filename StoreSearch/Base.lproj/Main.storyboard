@@ -73,6 +73,7 @@
                         <outlet property="categoryControl" destination="0Bw-kE-F8f" id="rNV-dP-kFs"/>
                         <outlet property="searchBar" destination="Vyk-Ak-ok3" id="Nva-84-k40"/>
                         <outlet property="tableView" destination="FNy-Gi-BOk" id="xl5-2g-Ylg"/>
+                        <segue destination="vV0-Fb-d72" kind="presentation" identifier="ShowDetail" modalPresentationStyle="fullScreen" id="SAh-Wc-zgH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -165,26 +166,38 @@
                                             <action selector="close:" destination="vV0-Fb-d72" eventType="touchUpInside" id="saa-9t-1yu"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 9.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ao0-Td-2hc">
-                                        <rect key="frame" x="203" y="240" width="61" height="24"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <color key="textColor" name="AccentColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oOX-xb-ZIk" userLabel="Price Frame">
+                                        <rect key="frame" x="191" y="242" width="81" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 9.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ao0-Td-2hc">
+                                                <rect key="frame" x="10" y="3" width="61" height="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" name="AccentColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="ao0-Td-2hc" secondAttribute="trailing" constant="10" id="LFK-A6-t3b"/>
+                                            <constraint firstAttribute="bottom" secondItem="ao0-Td-2hc" secondAttribute="bottom" constant="3" id="lJE-8g-rMS"/>
+                                            <constraint firstItem="ao0-Td-2hc" firstAttribute="top" secondItem="oOX-xb-ZIk" secondAttribute="top" constant="3" id="rdI-Q6-NtM"/>
+                                            <constraint firstItem="ao0-Td-2hc" firstAttribute="leading" secondItem="oOX-xb-ZIk" secondAttribute="leading" constant="10" id="z5C-qI-S99"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" name="DetailBG"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="oOX-xb-ZIk" secondAttribute="trailing" constant="8" id="6qO-Vx-Jy1"/>
                                     <constraint firstItem="gwD-rJ-6Kp" firstAttribute="top" secondItem="fHt-oL-5bt" secondAttribute="top" constant="8" id="ESq-fo-RN3"/>
-                                    <constraint firstAttribute="trailing" secondItem="ao0-Td-2hc" secondAttribute="trailing" constant="16" id="Iej-bL-IcL"/>
                                     <constraint firstItem="kxM-Pq-iaq" firstAttribute="leading" secondItem="fHt-oL-5bt" secondAttribute="leading" constant="16" id="NUD-WF-3iY"/>
                                     <constraint firstItem="kxM-Pq-iaq" firstAttribute="top" secondItem="iVH-yW-p5h" secondAttribute="bottom" constant="15" id="Onn-3T-DLL"/>
                                     <constraint firstAttribute="trailing" secondItem="gwD-rJ-6Kp" secondAttribute="trailing" constant="8" id="Zb6-nq-b0h"/>
-                                    <constraint firstAttribute="bottom" secondItem="ao0-Td-2hc" secondAttribute="bottom" constant="16" id="loT-YA-ZAq"/>
                                     <constraint firstItem="iVH-yW-p5h" firstAttribute="top" secondItem="fHt-oL-5bt" secondAttribute="top" constant="20" id="oeR-Eo-zqd"/>
                                     <constraint firstAttribute="width" secondItem="fHt-oL-5bt" secondAttribute="height" multiplier="1:1" id="r9H-u6-3tf"/>
                                     <constraint firstItem="iVH-yW-p5h" firstAttribute="centerX" secondItem="fHt-oL-5bt" secondAttribute="centerX" id="wWg-sw-avR"/>
                                     <constraint firstAttribute="trailing" secondItem="kxM-Pq-iaq" secondAttribute="trailing" constant="16" id="xne-QK-jpr"/>
                                     <constraint firstAttribute="width" constant="280" id="xuP-mh-H5D"/>
+                                    <constraint firstAttribute="bottom" secondItem="oOX-xb-ZIk" secondAttribute="bottom" constant="8" id="yCf-Hy-dP6"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -195,11 +208,14 @@
                             <constraint firstItem="fHt-oL-5bt" firstAttribute="centerX" secondItem="izH-hL-Xsb" secondAttribute="centerX" id="CqO-fe-zXj"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="CiZ-Pb-3Dg"/>
                     <connections>
                         <outlet property="artistLabel" destination="dSc-7Z-kOG" id="9hF-B1-Tyf"/>
                         <outlet property="detailImage" destination="iVH-yW-p5h" id="GqF-s0-xbK"/>
                         <outlet property="genreLabel" destination="v7G-TP-8QF" id="e6C-2k-zhW"/>
                         <outlet property="nameLabel" destination="nod-YO-tcw" id="Vd0-lY-cOL"/>
+                        <outlet property="popUpView" destination="fHt-oL-5bt" id="OZj-Iz-ORb"/>
+                        <outlet property="priceBorder" destination="oOX-xb-ZIk" id="WLk-Q1-ZTa"/>
                         <outlet property="priceLabel" destination="ao0-Td-2hc" id="a19-jn-jM6"/>
                         <outlet property="typeLabel" destination="fsf-Vd-nFl" id="e36-UH-O9M"/>
                     </connections>
@@ -219,7 +235,7 @@
             <color red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="DetailBG">
-            <color red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77254901960784317" green="0.77254901960784317" blue="0.77254901960784317" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="SearchBar">
             <color red="0.70599997043609619" green="0.94099998474121094" blue="0.82400000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
