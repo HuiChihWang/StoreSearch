@@ -8,13 +8,12 @@
 import UIKit
 
 class LandscapeViewController: UIViewController {
-
     
     lazy var search = SearchModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     

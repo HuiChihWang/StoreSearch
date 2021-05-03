@@ -16,16 +16,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Landscape" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyt-Rd-ozN">
-                                <rect key="frame" x="406" y="197" width="84" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HAs-ZQ-Tg1">
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LandscapeBackground" translatesAutoresizingMaskIntoConstraints="NO" id="wKC-wu-miT">
+                                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Landscape" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyt-Rd-ozN">
+                                        <rect key="frame" x="406" y="186" width="84" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <viewLayoutGuide key="contentLayoutGuide" id="O6U-yI-cHA"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="55j-AO-anz"/>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3pB-by-TXb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wKC-wu-miT" firstAttribute="top" secondItem="IVK-rX-USw" secondAttribute="top" id="3bp-Tc-KJq"/>
+                            <constraint firstItem="fyt-Rd-ozN" firstAttribute="centerX" secondItem="3pB-by-TXb" secondAttribute="centerX" id="7WA-RB-7DD"/>
+                            <constraint firstAttribute="trailing" secondItem="HAs-ZQ-Tg1" secondAttribute="trailing" id="A6R-8v-jkc"/>
+                            <constraint firstAttribute="trailing" secondItem="wKC-wu-miT" secondAttribute="trailing" id="BsW-Bk-21G"/>
+                            <constraint firstItem="wKC-wu-miT" firstAttribute="leading" secondItem="IVK-rX-USw" secondAttribute="leading" id="QiO-y0-Hu4"/>
+                            <constraint firstItem="HAs-ZQ-Tg1" firstAttribute="top" secondItem="IVK-rX-USw" secondAttribute="top" id="S0D-7W-BE1"/>
+                            <constraint firstAttribute="bottom" secondItem="HAs-ZQ-Tg1" secondAttribute="bottom" id="V5D-Fd-Nrr"/>
+                            <constraint firstAttribute="bottom" secondItem="wKC-wu-miT" secondAttribute="bottom" id="hHU-hG-5jN"/>
+                            <constraint firstItem="HAs-ZQ-Tg1" firstAttribute="leading" secondItem="IVK-rX-USw" secondAttribute="leading" id="v6x-PY-jGA"/>
+                            <constraint firstItem="fyt-Rd-ozN" firstAttribute="centerY" secondItem="3pB-by-TXb" secondAttribute="centerY" id="wsj-ky-rYQ"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mR4-Jo-RKu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -35,6 +56,7 @@
     </scenes>
     <color key="tintColor" name="AccentColor"/>
     <resources>
+        <image name="LandscapeBackground" width="650" height="433.33334350585938"/>
         <namedColor name="AccentColor">
             <color red="0.039000000804662704" green="0.31400001049041748" blue="0.31400001049041748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
