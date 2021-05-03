@@ -37,7 +37,7 @@
                                 <rect key="frame" x="0.0" y="95" width="414" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" id="8o8-mF-71b">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="0Bw-kE-F8f">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="0Bw-kE-F8f">
                                             <rect key="frame" x="20" y="5.5" width="374" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
@@ -79,6 +79,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="123.88392857142857"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="QVG-hC-DdL">
+            <objects>
+                <viewController id="sua-hx-TMl" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IVK-rX-USw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="3pB-by-TXb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mR4-Jo-RKu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="201" y="822"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="veg-7V-dH0">

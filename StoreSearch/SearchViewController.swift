@@ -20,9 +20,13 @@ class SearchViewController: UIViewController {
     private let loadingCellId = "LoadingCell"
     private let goToDetailViewSequeID = "ShowDetail"
     
+    private let landscapeStoryboardName = "LandscapeView"
+    private let landscapeControllerId = "SearchViewLandscape"
+    
+    private var landscapeView: LandscapeViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         let resultCell = UINib(nibName: "SearchResultCell", bundle: nil)
         let nothingFoundCell = UINib(nibName: "NothingFoundCell", bundle: nil)
@@ -34,10 +38,50 @@ class SearchViewController: UIViewController {
         searchBar.becomeFirstResponder()
     }
     
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        if UIDevice.current.orientation.isLandscape {
+            let storyboard = UIStoryboard(name: landscapeStoryboardName, bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: landscapeControllerId)
+            landscapeView = controller as? LandscapeViewController
+            showLanscapeView()
+        }
+        else {
+            hideLanscapeView()
+            landscapeView = nil
+        }
+    }
+    
+    private func showLanscapeView() {
+        if let landscapeView = landscapeView {
+            addChild(landscapeView)
+            landscapeView.view.frame = view.frame
+            self.view.addSubview(landscapeView.view)
+            landscapeView.didMove(toParent: self)
+        }
+        
+        searchBar.resignFirstResponder()
+
+    }
+    
+    private func hideLanscapeView() {
+        landscapeView?.willMove(toParent: nil)
+        landscapeView?.view.removeFromSuperview()
+        landscapeView?.removeFromParent()
+        searchBar.becomeFirstResponder()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == goToDetailViewSequeID) {
             if let controller = segue.destination as? DetailViewController {
                 controller.result = sender as? SearchResult
+            }
+        }
+        
+        else if segue.identifier == "rotateView" {
+            if let controller = segue.destination as? LandscapeViewController {
+                controller.search = search
             }
         }
     }

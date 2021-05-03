@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C65392D263FC0D4002B9F94 /* LandscapeView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C65392B263FC0D4002B9F94 /* LandscapeView.storyboard */; };
+		0C65392F263FC126002B9F94 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C65392E263FC126002B9F94 /* LandscapeViewController.swift */; };
 		0C79EA5A262F3D7300639099 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C79EA59262F3D7300639099 /* SearchModel.swift */; };
 		0C79EA5D262FD78000639099 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C79EA5C262FD78000639099 /* LoadingCell.xib */; };
 		0C79EA60262FD7C100639099 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C79EA5F262FD7C100639099 /* LoadingTableViewCell.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C65392C263FC0D4002B9F94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = StoreSearch/Base.lproj/LandscapeView.storyboard; sourceTree = "<group>"; };
+		0C65392E263FC126002B9F94 /* LandscapeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
 		0C79EA59262F3D7300639099 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		0C79EA5C262FD78000639099 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = SOURCE_ROOT; };
 		0C79EA5F262FD7C100639099 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 		0C7CF7FC262E7C3000D72CD9 /* StoreSearch */ = {
 			isa = PBXGroup;
 			children = (
+				0C65392B263FC0D4002B9F94 /* LandscapeView.storyboard */,
+				0C65392E263FC126002B9F94 /* LandscapeViewController.swift */,
 				0C79EA5C262FD78000639099 /* LoadingCell.xib */,
 				0C79EA5F262FD7C100639099 /* LoadingTableViewCell.swift */,
 				0C7CF813262E8B1500D72CD9 /* SearchResult.swift */,
@@ -152,6 +158,7 @@
 				0C7CF807262E7C3700D72CD9 /* Assets.xcassets in Resources */,
 				0C79EA5D262FD78000639099 /* LoadingCell.xib in Resources */,
 				0C7CF81B262EAF3F00D72CD9 /* SearchResultCell.xib in Resources */,
+				0C65392D263FC0D4002B9F94 /* LandscapeView.storyboard in Resources */,
 				0C7CF821262EBA0500D72CD9 /* NothingFoundCell.xib in Resources */,
 				0C7CF805262E7C3000D72CD9 /* Main.storyboard in Resources */,
 			);
@@ -165,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C7CF802262E7C3000D72CD9 /* SearchViewController.swift in Sources */,
+				0C65392F263FC126002B9F94 /* LandscapeViewController.swift in Sources */,
 				0C7CF81E262EB61300D72CD9 /* SearchResultTableViewCell.swift in Sources */,
 				0C7CF7FE262E7C3000D72CD9 /* AppDelegate.swift in Sources */,
 				0C79EA60262FD7C100639099 /* LoadingTableViewCell.swift in Sources */,
@@ -178,6 +186,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0C65392B263FC0D4002B9F94 /* LandscapeView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0C65392C263FC0D4002B9F94 /* Base */,
+			);
+			name = LandscapeView.storyboard;
+			sourceTree = "<group>";
+		};
 		0C7CF803262E7C3000D72CD9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
