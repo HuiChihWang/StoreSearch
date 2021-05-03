@@ -20,10 +20,41 @@
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="c3n-c5-QjQ">
+                                <rect key="frame" x="44" y="0.0" width="808" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="liM-Oy-kz0">
+                                <rect key="frame" x="64" y="71" width="768" height="322"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="15" minimumInteritemSpacing="25" id="oE1-Hz-Db3">
+                                    <size key="itemSize" width="80" height="80"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="sua-hx-TMl" id="3Tn-Id-tCg"/>
+                                    <outlet property="delegate" destination="sua-hx-TMl" id="5LU-E4-gRL"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3pB-by-TXb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3pB-by-TXb" firstAttribute="leading" secondItem="c3n-c5-QjQ" secondAttribute="leading" id="ADE-gF-QLt"/>
+                            <constraint firstItem="liM-Oy-kz0" firstAttribute="leading" secondItem="3pB-by-TXb" secondAttribute="leading" constant="20" id="K8i-Uz-NNk"/>
+                            <constraint firstItem="liM-Oy-kz0" firstAttribute="bottom" secondItem="3pB-by-TXb" secondAttribute="bottom" id="KgI-NI-tlf"/>
+                            <constraint firstItem="liM-Oy-kz0" firstAttribute="top" secondItem="c3n-c5-QjQ" secondAttribute="bottom" constant="20" id="KnP-7E-6Mi"/>
+                            <constraint firstItem="3pB-by-TXb" firstAttribute="top" secondItem="c3n-c5-QjQ" secondAttribute="top" id="cPw-ur-pJE"/>
+                            <constraint firstItem="liM-Oy-kz0" firstAttribute="trailing" secondItem="3pB-by-TXb" secondAttribute="trailing" constant="-20" id="dIr-5o-nrM"/>
+                            <constraint firstItem="3pB-by-TXb" firstAttribute="trailing" secondItem="c3n-c5-QjQ" secondAttribute="trailing" id="dpA-95-8PC"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="liM-Oy-kz0" id="5SI-jK-alz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mR4-Jo-RKu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

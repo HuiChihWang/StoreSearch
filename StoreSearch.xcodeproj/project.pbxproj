@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0C65392D263FC0D4002B9F94 /* LandscapeView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C65392B263FC0D4002B9F94 /* LandscapeView.storyboard */; };
 		0C65392F263FC126002B9F94 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C65392E263FC126002B9F94 /* LandscapeViewController.swift */; };
+		0C65395D26404DCA002B9F94 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C65395C26404DCA002B9F94 /* SearchCollectionViewCell.swift */; };
+		0C65395F26405034002B9F94 /* SearchCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C65395E26405034002B9F94 /* SearchCollectionCell.xib */; };
 		0C79EA5A262F3D7300639099 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C79EA59262F3D7300639099 /* SearchModel.swift */; };
 		0C79EA5D262FD78000639099 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C79EA5C262FD78000639099 /* LoadingCell.xib */; };
 		0C79EA60262FD7C100639099 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C79EA5F262FD7C100639099 /* LoadingTableViewCell.swift */; };
@@ -28,6 +30,8 @@
 /* Begin PBXFileReference section */
 		0C65392C263FC0D4002B9F94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = StoreSearch/Base.lproj/LandscapeView.storyboard; sourceTree = "<group>"; };
 		0C65392E263FC126002B9F94 /* LandscapeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
+		0C65395C26404DCA002B9F94 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		0C65395E26405034002B9F94 /* SearchCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCollectionCell.xib; sourceTree = "<group>"; };
 		0C79EA59262F3D7300639099 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		0C79EA5C262FD78000639099 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LoadingCell.xib; path = StoreSearch/Storyboard/LoadingCell.xib; sourceTree = SOURCE_ROOT; };
 		0C79EA5F262FD7C100639099 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
@@ -70,6 +74,7 @@
 		0C65393126402A0C002B9F94 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				0C65395E26405034002B9F94 /* SearchCollectionCell.xib */,
 				0C65392B263FC0D4002B9F94 /* LandscapeView.storyboard */,
 				0C7CF803262E7C3000D72CD9 /* Main.storyboard */,
 				0C7CF808262E7C3700D72CD9 /* LaunchScreen.storyboard */,
@@ -83,6 +88,7 @@
 		0C65393226402A24002B9F94 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0C65395C26404DCA002B9F94 /* SearchCollectionViewCell.swift */,
 				0C79EA5F262FD7C100639099 /* LoadingTableViewCell.swift */,
 				0C7CF81D262EB61300D72CD9 /* SearchResultTableViewCell.swift */,
 			);
@@ -189,6 +195,7 @@
 				0C7CF80A262E7C3700D72CD9 /* LaunchScreen.storyboard in Resources */,
 				0C7CF807262E7C3700D72CD9 /* Assets.xcassets in Resources */,
 				0C79EA5D262FD78000639099 /* LoadingCell.xib in Resources */,
+				0C65395F26405034002B9F94 /* SearchCollectionCell.xib in Resources */,
 				0C7CF81B262EAF3F00D72CD9 /* SearchResultCell.xib in Resources */,
 				0C65392D263FC0D4002B9F94 /* LandscapeView.storyboard in Resources */,
 				0C7CF821262EBA0500D72CD9 /* NothingFoundCell.xib in Resources */,
@@ -207,6 +214,7 @@
 				0C65392F263FC126002B9F94 /* LandscapeViewController.swift in Sources */,
 				0C7CF81E262EB61300D72CD9 /* SearchResultTableViewCell.swift in Sources */,
 				0C7CF7FE262E7C3000D72CD9 /* AppDelegate.swift in Sources */,
+				0C65395D26404DCA002B9F94 /* SearchCollectionViewCell.swift in Sources */,
 				0C79EA60262FD7C100639099 /* LoadingTableViewCell.swift in Sources */,
 				0C79EA5A262F3D7300639099 /* SearchModel.swift in Sources */,
 				0C7CF814262E8B1500D72CD9 /* SearchResult.swift in Sources */,

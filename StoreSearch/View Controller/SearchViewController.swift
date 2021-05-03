@@ -27,24 +27,19 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let resultCell = UINib(nibName: "SearchResultCell", bundle: nil)
-        let nothingFoundCell = UINib(nibName: "NothingFoundCell", bundle: nil)
-        let loadingCell = UINib(nibName: "LoadingCell", bundle: nil)
-        tableView.register(resultCell, forCellReuseIdentifier: searchCellId)
-        tableView.register(nothingFoundCell, forCellReuseIdentifier: nothingFoundCellId)
-        tableView.register(loadingCell, forCellReuseIdentifier: loadingCellId)
-        
+        setupTableViewCell()
+
         searchBar.becomeFirstResponder()
+        
+        // TODO: fix force display lanscapeview
+//        showLanscapeView()
     }
+    
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         super.willTransition(to: newCollection, with: coordinator)
         
         if UIDevice.current.orientation.isLandscape {
-            let storyboard = UIStoryboard(name: landscapeStoryboardName, bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: landscapeControllerId)
-            landscapeView = controller as? LandscapeViewController
             showLanscapeView()
         }
         else {
@@ -54,7 +49,12 @@ class SearchViewController: UIViewController {
     }
     
     private func showLanscapeView() {
+        let storyboard = UIStoryboard(name: landscapeStoryboardName, bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: landscapeControllerId)
+        landscapeView = controller as? LandscapeViewController
+        
         if let landscapeView = landscapeView {
+            landscapeView.search = search
             addChild(landscapeView)
             landscapeView.view.frame = view.frame
             self.view.addSubview(landscapeView.view)
@@ -143,6 +143,15 @@ extension SearchViewController: UITableViewDelegate {
             return indexPath
         }
         return nil
+    }
+    
+    private func setupTableViewCell() {
+        let resultCell = UINib(nibName: "SearchResultCell", bundle: nil)
+        let nothingFoundCell = UINib(nibName: "NothingFoundCell", bundle: nil)
+        let loadingCell = UINib(nibName: "LoadingCell", bundle: nil)
+        tableView.register(resultCell, forCellReuseIdentifier: searchCellId)
+        tableView.register(nothingFoundCell, forCellReuseIdentifier: nothingFoundCellId)
+        tableView.register(loadingCell, forCellReuseIdentifier: loadingCellId)
     }
 }
 

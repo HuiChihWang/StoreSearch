@@ -9,55 +9,19 @@ import UIKit
 
 class LandscapeViewController: UIViewController {
     
-    @IBOutlet weak var scrollView: UIScrollView! {
-        didSet {
-            scrollView.layer.borderWidth = 2
-        }
-    }
-    
+    @IBOutlet weak var collectionView: UICollectionView!
+    private let searchCellId = "SearchCollectionCell"
+
+
     lazy var search = SearchModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        let gridView = createGridView(with: Array(0..<10), buttonSize: CGSize(width: 80, height: 80), buttonSpacing: CGSize(width: 7, height: 7))
-        gridView.backgroundColor = .red
-        
-        view.addSubview(gridView)
-        
+        let cell = UINib(nibName: "SearchCollectionCell", bundle: nil)
+        collectionView.register(cell, forCellWithReuseIdentifier: searchCellId)
     }
-    
-    private func createGridView(with results: [Any], buttonSize: CGSize, buttonSpacing: CGSize) -> UIView {
         
-        let gridView = UIView(frame: view.frame)
-        
-        let Nh = floor((gridView.frame.width + buttonSpacing.width) / (buttonSize.width + buttonSpacing.width))
-        
-        let Nv = ceil(CGFloat(results.count) / Nh)
-        
-        let height = buttonSize.height * Nv + (Nv - 1) * buttonSpacing.height
-        
-        gridView.frame.size.height = height
-        
-        for (index, result) in (0..<10).enumerated() {
-            let button = UIButton()
-            button.backgroundColor = .white
-            button.setTitle("\(index)", for: .normal)
-            button.frame = CGRect(origin: gridView.frame.origin, size: buttonSize)
-            
-            let rowIndex = index / Int(Nv)
-            let colIndex = index % Int(Nh)
-            button.frame.origin.x += CGFloat(colIndex) * (buttonSize.width + buttonSpacing.width)
-            button.frame.origin.y += CGFloat(rowIndex) * (buttonSize.height + buttonSpacing.height)
-            
-            gridView.addSubview(button)
-        }
-        
-        return gridView
-    }
-    
 
     /*
     // MARK: - Navigation
@@ -70,3 +34,30 @@ class LandscapeViewController: UIViewController {
     */
 
 }
+
+extension LandscapeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return search.resultsNum
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+           
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: searchCellId, for: indexPath) as? SearchCollectionViewCell
+                
+        if let result = search.getResult(by: indexPath.item) {
+            cell?.configure(with: result)
+        }
+        
+        return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let result = search.getResult(by: indexPath.item) {
+            print("select Item: \(indexPath.item), name: \(result.name)")
+        }
+    }
+    
+}
+
+
