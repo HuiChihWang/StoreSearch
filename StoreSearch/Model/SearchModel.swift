@@ -18,6 +18,10 @@ class SearchModel {
         results.resultCount
     }
     
+    var allResults: [SearchResult] {
+        results.results
+    }
+    
     private(set) var status = SearchStatus.notSearchedYet
     
     var isEmpty: Bool {
