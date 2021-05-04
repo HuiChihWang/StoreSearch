@@ -50,7 +50,7 @@ class SearchModel {
     
     private func initializeSearch(with text: String, by category: Category, number: Int = 50) {
         if let searchText = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-            let urlString = String(format: "https://itunes.apple.com/search?term=%@&type=%@&limit=%d", searchText, category.searchKey, number)
+            let urlString = String(format: "https://itunes.apple.com/search?term=%@&media=%@&limit=%d", searchText, category.searchKey, number)
             
             searchURL = URL(string: urlString)
             print("searching with url: \(searchURL!)")
@@ -114,7 +114,7 @@ enum Category: String {
     var searchKey: String {
         switch self {
         case .music:
-            return "musicTrack"
+            return "music"
         case .software:
             return "software"
         case .ebook:
