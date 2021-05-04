@@ -11,6 +11,7 @@
 		0C65392F263FC126002B9F94 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C65392E263FC126002B9F94 /* LandscapeViewController.swift */; };
 		0C65395D26404DCA002B9F94 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C65395C26404DCA002B9F94 /* SearchCollectionViewCell.swift */; };
 		0C65395F26405034002B9F94 /* SearchCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C65395E26405034002B9F94 /* SearchCollectionCell.xib */; };
+		0C65396526418D77002B9F94 /* LandscapeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C65396426418D77002B9F94 /* LandscapeDetailViewController.swift */; };
 		0C79EA5A262F3D7300639099 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C79EA59262F3D7300639099 /* SearchModel.swift */; };
 		0C79EA5D262FD78000639099 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C79EA5C262FD78000639099 /* LoadingCell.xib */; };
 		0C79EA60262FD7C100639099 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C79EA5F262FD7C100639099 /* LoadingTableViewCell.swift */; };
@@ -32,6 +33,7 @@
 		0C65392E263FC126002B9F94 /* LandscapeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
 		0C65395C26404DCA002B9F94 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		0C65395E26405034002B9F94 /* SearchCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCollectionCell.xib; sourceTree = "<group>"; };
+		0C65396426418D77002B9F94 /* LandscapeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LandscapeDetailViewController.swift; path = StoreSearch/Storyboard/LandscapeDetailViewController.swift; sourceTree = SOURCE_ROOT; };
 		0C79EA59262F3D7300639099 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		0C79EA5C262FD78000639099 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LoadingCell.xib; path = StoreSearch/Storyboard/LoadingCell.xib; sourceTree = SOURCE_ROOT; };
 		0C79EA5F262FD7C100639099 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 		0C653930264029FF002B9F94 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0C65396426418D77002B9F94 /* LandscapeDetailViewController.swift */,
 				0C65392E263FC126002B9F94 /* LandscapeViewController.swift */,
 				0C7CF801262E7C3000D72CD9 /* SearchViewController.swift */,
 				0C79EA632631D47400639099 /* DetailViewController.swift */,
@@ -220,6 +223,7 @@
 				0C7CF814262E8B1500D72CD9 /* SearchResult.swift in Sources */,
 				0C7CF800262E7C3000D72CD9 /* SceneDelegate.swift in Sources */,
 				0C79EA642631D47400639099 /* DetailViewController.swift in Sources */,
+				0C65396526418D77002B9F94 /* LandscapeDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

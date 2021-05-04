@@ -10,6 +10,7 @@ import UIKit
 class LandscapeViewController: UIViewController {
     
     private let searchCellId = "SearchCollectionCell"
+    private let popUpDetailSegueId = "PopUpLandscapeDetail"
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -72,16 +73,20 @@ class LandscapeViewController: UIViewController {
     }
         
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == popUpDetailSegueId, let controller = segue.destination as? LandscapeDetailViewController {
+            if let result = sender as? SearchResult {
+                controller.result = result
+            }
+        }
     }
-    */
-
 }
 
 extension LandscapeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -104,6 +109,8 @@ extension LandscapeViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let result = search.getResult(by: indexPath.item) {
             print("select Item: \(indexPath.item), name: \(result.name)")
+            
+            performSegue(withIdentifier: popUpDetailSegueId, sender: result)
         }
     }
 }
