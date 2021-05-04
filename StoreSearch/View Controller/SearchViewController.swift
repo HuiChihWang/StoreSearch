@@ -169,32 +169,25 @@ extension SearchViewController: UISearchBarDelegate {
         performSearch()
     }
     
-    private func setUpRequest() {
+    private func getCategory() -> Category {
         let selectedTitle = categoryControl.titleForSegment(at: categoryControl.selectedSegmentIndex)
         
-        let category = Category(rawValue: selectedTitle ?? "All") ?? .all
-        
-        search.setUpSearchText(with: searchBar.text!, by: category)
+        return Category(rawValue: selectedTitle ?? "All") ?? .all
     }
-    
-    private func performSearch() {
-        setUpRequest()
         
-        tableView.reloadData()
+    private func performSearch() {
         searchBar.resignFirstResponder()
         
-        DispatchQueue.global().async {
-            self.search.startSearch()
-            
-            DispatchQueue.main.async {
-                
-                if (self.search.status == .networkError) {
-                    self.showNetworkError()
-                }
-                self.tableView.reloadData()
-            }
-        }
 
+        
+        search.performSearch(with: searchBar.text!, for: getCategory()) { status in
+            if (status == .networkError) {
+                self.showNetworkError()
+            }
+            self.tableView.reloadData()
+        }
+        
+        tableView.reloadData()
     }
 
     

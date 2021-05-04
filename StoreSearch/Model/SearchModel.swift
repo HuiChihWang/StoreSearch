@@ -7,13 +7,9 @@
 
 import Foundation
 
+typealias SearchCompleteHandler = (SearchStatus) -> Void
+
 class SearchModel {
-    private var results = SearchResults() {
-        didSet {
-            results.results.sort(by: <)
-        }
-    }
-    
     var resultsNum: Int {
         results.resultCount
     }
@@ -22,11 +18,11 @@ class SearchModel {
         results.results
     }
     
-    private(set) var status = SearchStatus.notSearchedYet
-    
     var isEmpty: Bool {
         status == .noResult
     }
+    
+    private(set) var status = SearchStatus.notSearchedYet
     
     private var searchURL: URL? {
         didSet {
@@ -34,8 +30,14 @@ class SearchModel {
         }
     }
     
+    private var results = SearchResults() {
+        didSet {
+            results.results.sort(by: <)
+        }
+    }
+    
     // TODO: need to use asynchronous programming (URL Session)
-    public func setUpSearchText(with text: String, by category: Category = .all, number: Int = 50) {
+    private func setUpSearchText(with text: String, by category: Category = .all, number: Int = 50) {
         if let searchText = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             
             let urlString = String(format: "https://itunes.apple.com/search?term=%@&type=%@&limit=%d", searchText, category.searchKey, number)
@@ -46,16 +48,28 @@ class SearchModel {
     }
     
     
-    public func startSearch() {
+    private func startSearch() {
         if let searchURL = searchURL, let data = self.persormSearchRequest(with: searchURL) {
             results = parse(data: data)
             status = results.isEmpty ? .noResult : .hasSearchResult
         }
     }
 
-    
     public func getResult(by index: Int) -> SearchResult? {
         results.getResult(by: index)
+    }
+    
+    public func performSearch(with text: String, for category: Category = .all, number: Int = 50, completion: @escaping SearchCompleteHandler) {
+        
+        setUpSearchText(with: text, by: category, number: number)
+        
+        DispatchQueue.global().async {
+            self.startSearch()
+            
+            DispatchQueue.main.async {
+                completion(self.status)
+            }
+        }
     }
     
 
