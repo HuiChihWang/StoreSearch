@@ -141,16 +141,16 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zC7-RC-uwY" userLabel="Type">
-                                                <rect key="frame" x="0.0" y="111" width="215" height="36"/>
+                                                <rect key="frame" x="0.0" y="111" width="231.5" height="36"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f33-Zx-aU6">
-                                                        <rect key="frame" x="0.0" y="0.0" width="69" height="36"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="85.5" height="36"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <color key="textColor" name="ArtistName"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="type name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5h-a1-1lx">
-                                                        <rect key="frame" x="79" y="0.0" width="136" height="36"/>
+                                                        <rect key="frame" x="95.5" y="0.0" width="136" height="36"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -198,6 +198,9 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="CPp-Qv-Nav" firstAttribute="leading" secondItem="T5h-a1-1lx" secondAttribute="leading" id="IA9-UA-FAS"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" name="DetailBG"/>

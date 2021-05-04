@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var categoryControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
@@ -28,11 +28,8 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableViewCell()
-
-        searchBar.becomeFirstResponder()
         
-        // TODO: fix force display lanscapeview
-//        showLanscapeView()
+        searchBar.becomeFirstResponder()
     }
     
     
@@ -62,7 +59,7 @@ class SearchViewController: UIViewController {
         }
         
         searchBar.resignFirstResponder()
-
+        
     }
     
     private func hideLanscapeView() {
@@ -99,7 +96,7 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-                
+        
         var cell: UITableViewCell!
         
         if (search.status == .hasSearchResult) {
@@ -126,13 +123,10 @@ extension SearchViewController: UITableViewDataSource {
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         if let result = search.getResult(by: indexPath.row) {
             performSegue(withIdentifier: goToDetailViewSequeID, sender: result)
             print(result)
         }
-        
-        
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -173,7 +167,7 @@ extension SearchViewController: UISearchBarDelegate {
         let selectedTitle = categoryControl.titleForSegment(at: categoryControl.selectedSegmentIndex)
         return Category(rawValue: selectedTitle ?? "All") ?? .all
     }
-        
+    
     private func performSearch() {
         searchBar.resignFirstResponder()
         
@@ -187,7 +181,7 @@ extension SearchViewController: UISearchBarDelegate {
         
         tableView.reloadData()
     }
-
+    
     
     private func showNetworkError() {
         let alertController = UIAlertController(title: "Woops...", message: "There was an error accessing the iTunes Store. Please Try Again", preferredStyle: .alert)
