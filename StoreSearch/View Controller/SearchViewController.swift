@@ -171,7 +171,6 @@ extension SearchViewController: UISearchBarDelegate {
     
     private func getCategory() -> Category {
         let selectedTitle = categoryControl.titleForSegment(at: categoryControl.selectedSegmentIndex)
-        
         return Category(rawValue: selectedTitle ?? "All") ?? .all
     }
         

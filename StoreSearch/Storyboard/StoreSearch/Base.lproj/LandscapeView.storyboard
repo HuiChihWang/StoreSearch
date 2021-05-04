@@ -16,16 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LandscapeBackground" translatesAutoresizingMaskIntoConstraints="NO" id="wKC-wu-miT">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LandscapeBackground" translatesAutoresizingMaskIntoConstraints="NO" id="q3H-PT-Z4B">
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="c3n-c5-QjQ">
-                                <rect key="frame" x="44" y="0.0" width="808" height="51"/>
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="sua-hx-TMl" id="kTp-9n-gud"/>
+                                </connections>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="liM-Oy-kz0">
-                                <rect key="frame" x="64" y="71" width="768" height="322"/>
+                                <rect key="frame" x="64" y="103" width="768" height="290"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="15" minimumInteritemSpacing="25" id="oE1-Hz-Db3">
                                     <size key="itemSize" width="80" height="80"/>
@@ -39,21 +41,55 @@
                                     <outlet property="delegate" destination="sua-hx-TMl" id="5LU-E4-gRL"/>
                                 </connections>
                             </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="17l-Me-n55">
+                                <rect key="frame" x="429.5" y="272.5" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="IEx-Ku-QdG">
+                                <rect key="frame" x="261" y="62" width="374" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="All"/>
+                                    <segment title="Music"/>
+                                    <segment title="Software"/>
+                                    <segment title="E-books"/>
+                                </segments>
+                                <connections>
+                                    <action selector="categoryChanged:" destination="sua-hx-TMl" eventType="valueChanged" id="mYc-QB-rlK"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RB7-S3-o9Z">
+                                <rect key="frame" x="369.5" y="233.5" width="157" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3pB-by-TXb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="3pB-by-TXb" firstAttribute="leading" secondItem="c3n-c5-QjQ" secondAttribute="leading" id="ADE-gF-QLt"/>
+                            <constraint firstItem="RB7-S3-o9Z" firstAttribute="centerX" secondItem="liM-Oy-kz0" secondAttribute="centerX" id="B7x-aq-AaG"/>
+                            <constraint firstItem="q3H-PT-Z4B" firstAttribute="leading" secondItem="IVK-rX-USw" secondAttribute="leading" id="BEV-Ih-eEj"/>
+                            <constraint firstItem="RB7-S3-o9Z" firstAttribute="centerY" secondItem="liM-Oy-kz0" secondAttribute="centerY" id="CSv-Dz-ns5"/>
+                            <constraint firstItem="17l-Me-n55" firstAttribute="centerX" secondItem="liM-Oy-kz0" secondAttribute="centerX" id="Eo1-xc-mTV"/>
+                            <constraint firstAttribute="bottom" secondItem="q3H-PT-Z4B" secondAttribute="bottom" id="FCF-sU-tx2"/>
                             <constraint firstItem="liM-Oy-kz0" firstAttribute="leading" secondItem="3pB-by-TXb" secondAttribute="leading" constant="20" id="K8i-Uz-NNk"/>
                             <constraint firstItem="liM-Oy-kz0" firstAttribute="bottom" secondItem="3pB-by-TXb" secondAttribute="bottom" id="KgI-NI-tlf"/>
-                            <constraint firstItem="liM-Oy-kz0" firstAttribute="top" secondItem="c3n-c5-QjQ" secondAttribute="bottom" constant="20" id="KnP-7E-6Mi"/>
                             <constraint firstItem="3pB-by-TXb" firstAttribute="top" secondItem="c3n-c5-QjQ" secondAttribute="top" id="cPw-ur-pJE"/>
                             <constraint firstItem="liM-Oy-kz0" firstAttribute="trailing" secondItem="3pB-by-TXb" secondAttribute="trailing" constant="-20" id="dIr-5o-nrM"/>
-                            <constraint firstItem="3pB-by-TXb" firstAttribute="trailing" secondItem="c3n-c5-QjQ" secondAttribute="trailing" id="dpA-95-8PC"/>
+                            <constraint firstAttribute="trailing" secondItem="q3H-PT-Z4B" secondAttribute="trailing" id="mIr-lk-a4j"/>
+                            <constraint firstItem="q3H-PT-Z4B" firstAttribute="top" secondItem="IVK-rX-USw" secondAttribute="top" id="mUv-9t-qBV"/>
+                            <constraint firstItem="liM-Oy-kz0" firstAttribute="top" secondItem="IEx-Ku-QdG" secondAttribute="bottom" constant="10" id="nrJ-VT-TY9"/>
+                            <constraint firstItem="c3n-c5-QjQ" firstAttribute="leading" secondItem="IVK-rX-USw" secondAttribute="leading" id="nsD-2F-2PW"/>
+                            <constraint firstAttribute="trailing" secondItem="c3n-c5-QjQ" secondAttribute="trailing" id="xWR-zZ-2ro"/>
+                            <constraint firstItem="17l-Me-n55" firstAttribute="top" secondItem="RB7-S3-o9Z" secondAttribute="bottom" constant="10" id="yq5-OX-nEc"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="17l-Me-n55" id="vcl-fQ-1r2"/>
+                        <outlet property="categoryController" destination="IEx-Ku-QdG" id="ikp-wS-Ney"/>
                         <outlet property="collectionView" destination="liM-Oy-kz0" id="5SI-jK-alz"/>
+                        <outlet property="messageLabel" destination="RB7-S3-o9Z" id="AN1-KL-PCV"/>
+                        <outlet property="searchBar" destination="c3n-c5-QjQ" id="UoI-dS-At9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mR4-Jo-RKu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

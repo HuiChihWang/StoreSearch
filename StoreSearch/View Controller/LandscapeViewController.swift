@@ -9,17 +9,66 @@ import UIKit
 
 class LandscapeViewController: UIViewController {
     
-    @IBOutlet weak var collectionView: UICollectionView!
     private let searchCellId = "SearchCollectionCell"
 
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var categoryController: UISegmentedControl!
+    @IBOutlet weak var messageLabel: UILabel!
+    
 
     lazy var search = SearchModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //register cell
         let cell = UINib(nibName: "SearchCollectionCell", bundle: nil)
         collectionView.register(cell, forCellWithReuseIdentifier: searchCellId)
+        
+        configureView()
+    }
+    
+    @IBAction func categoryChanged(_ sender: Any) {
+        searchResult()
+    }
+    
+    private func configureView() {
+        collectionView.reloadData()
+        configureMessageLabel()
+        configureActivityIndicator()
+        
+        if search.status == .notSearchedYet {
+            searchBar.becomeFirstResponder()
+        }
+        else {
+            searchBar.resignFirstResponder()
+        }
+    }
+    
+    private func configureMessageLabel() {
+        switch search.status {
+        case .notSearchedYet:
+            messageLabel.text = "Please Input Search Item"
+        case .noResult:
+            messageLabel.text = "Nothing Found"
+        case .searching:
+            messageLabel.text = "Loading..."
+        default:
+            messageLabel.text = ""
+        }
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicator.isHidden = search.status != .searching
+        
+        if activityIndicator.isHidden {
+            activityIndicator.stopAnimating()
+        }
+        else {
+            activityIndicator.startAnimating()
+        }
     }
         
 
@@ -57,7 +106,36 @@ extension LandscapeViewController: UICollectionViewDelegate, UICollectionViewDat
             print("select Item: \(indexPath.item), name: \(result.name)")
         }
     }
+}
+
+extension LandscapeViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchResult()
+    }
     
+    private func showNetworkError() {
+        let alertController = UIAlertController(title: "Woops...", message: "There was an error accessing the iTunes Store. Please Try Again", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func getCategory() -> Category {
+        let selectedTitle = categoryController.titleForSegment(at: categoryController.selectedSegmentIndex)
+        return Category(rawValue: selectedTitle ?? "All") ?? .all
+    }
+
+    
+    private func searchResult() {
+        search.performSearch(with: searchBar.text!, for: getCategory()) { [weak self] status in
+            self?.configureView()
+            
+            if status == .networkError {
+                self?.showNetworkError()
+            }
+        }
+        
+        configureView()
+    }
 }
 
 

@@ -39,7 +39,13 @@ class SearchModel {
     private var dataTask: URLSessionDataTask?
     
     public func performSearch(with text: String, for category: Category, number: Int = 50, completion: @escaping SearchCompleteHandler) {
+        
         initializeSearch(with: text, by: category, number: number)
+        
+        guard !text.isEmpty else {
+            status = .notSearchedYet
+            return
+        }
         
         if let url = searchURL {
             self.dataTask = self.createDataTask(with: url, completion: completion)
@@ -54,9 +60,10 @@ class SearchModel {
             
             searchURL = URL(string: urlString)
             print("searching with url: \(searchURL!)")
-            
-            dataTask?.cancel()
         }
+        
+        results = SearchResults()
+        dataTask?.cancel()
     }
     
     private func createDataTask(with url: URL, completion: @escaping SearchCompleteHandler) -> URLSessionDataTask {
