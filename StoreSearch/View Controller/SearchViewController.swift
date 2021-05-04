@@ -178,8 +178,7 @@ extension SearchViewController: UISearchBarDelegate {
     private func performSearch() {
         searchBar.resignFirstResponder()
         
-
-        
+        print(getCategory())
         search.performSearch(with: searchBar.text!, for: getCategory()) { status in
             if (status == .networkError) {
                 self.showNetworkError()

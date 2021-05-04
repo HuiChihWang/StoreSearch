@@ -36,55 +36,53 @@ class SearchModel {
         }
     }
     
-    // TODO: need to use asynchronous programming (URL Session)
-    private func setUpSearchText(with text: String, by category: Category = .all, number: Int = 50) {
+    private var dataTask: URLSessionDataTask?
+    
+    public func performSearch(with text: String, for category: Category, number: Int = 50, completion: @escaping SearchCompleteHandler) {
+        initializeSearch(with: text, by: category, number: number)
+        
+        if let url = searchURL {
+            self.dataTask = self.createDataTask(with: url, completion: completion)
+        }
+        
+        dataTask?.resume()
+    }
+    
+    private func initializeSearch(with text: String, by category: Category, number: Int = 50) {
         if let searchText = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-            
             let urlString = String(format: "https://itunes.apple.com/search?term=%@&type=%@&limit=%d", searchText, category.searchKey, number)
             
             searchURL = URL(string: urlString)
             print("searching with url: \(searchURL!)")
+            
+            dataTask?.cancel()
         }
     }
     
-    
-    private func startSearch() {
-        if let searchURL = searchURL, let data = self.persormSearchRequest(with: searchURL) {
-            results = parse(data: data)
-            status = results.isEmpty ? .noResult : .hasSearchResult
-        }
-    }
-
-    public func getResult(by index: Int) -> SearchResult? {
-        results.getResult(by: index)
-    }
-    
-    public func performSearch(with text: String, for category: Category = .all, number: Int = 50, completion: @escaping SearchCompleteHandler) {
-        
-        setUpSearchText(with: text, by: category, number: number)
-        
-        DispatchQueue.global().async {
-            self.startSearch()
+    private func createDataTask(with url: URL, completion: @escaping SearchCompleteHandler) -> URLSessionDataTask {
+        let dataTask = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data {
+                self.results = self.parse(data: data)
+                self.status = self.results.isEmpty ? .noResult : .hasSearchResult
+            }
+            if let error = error {
+                print("Download Error: \(error.localizedDescription)")
+                self.status = .networkError
+            }
             
             DispatchQueue.main.async {
                 completion(self.status)
             }
         }
+        
+        return dataTask
     }
-    
 
     
-    private func persormSearchRequest(with url: URL) -> Data? {
-        do {
-            return try Data(contentsOf: url)
-        } catch {
-            print("Download Error: \(error.localizedDescription)")
-            self.status = .networkError
-        }
-        
-        return nil
+    public func getResult(by index: Int) -> SearchResult? {
+        results.getResult(by: index)
     }
-    
+        
     private func parse(data: Data) -> SearchResults {
         var result = SearchResults()
         
