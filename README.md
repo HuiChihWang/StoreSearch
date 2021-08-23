@@ -13,6 +13,7 @@ This is project aiming to fetch apple store API. Users can search the product th
 
 
 ## Demo
-![image](https://github.com/HuiChihWang/StoreSearch/blob/main/searchDemo.gif)
+<img src="https://github.com/HuiChihWang/StoreSearch/blob/main/searchDemo.gif" alt="drawing" width="300"/>
+
 ## Authors
 - [@HuiChihWang](https://github.com/HuiChihWang/)
